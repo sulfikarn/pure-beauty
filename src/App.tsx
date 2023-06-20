@@ -15,6 +15,7 @@ function App() {
   const handleSubmit = (data:any) => {
     if(data.username=='wpcustomer'  && data.password=='l!rDymqRgR1aG)MxC^XF%v9$')
     {
+      localStorage.setItem('isAccountLoggedIn', `${true}`)
       setIsLogin(false)
       toast.success('Login Successful')
     } else {
@@ -26,7 +27,7 @@ function App() {
     <ToastContainer closeButton={false} position="top-right" />
 
       {
-        isLogin? <Login handleLoginSubmit={handleSubmit} /> : <Main/>
+       !isLogin ||  localStorage.getItem("isAccountLoggedIn") == `${true}` ? <Main/> : <Login handleLoginSubmit={handleSubmit} />
         
       }
       
